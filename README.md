@@ -1,26 +1,30 @@
-# QA Automation Skeleton (Pytest + Playwright)
+# QA Automation Skeleton (Pytest + Playwright + Allure)
 
-**Quickstart (local):**
-1. `python -m venv .venv && . .venv/bin/activate` (Windows: `.venv\\Scripts\\activate`), then `pip install -r requirements.txt` and `python -m playwright install`
-2. `pytest` (runs the placeholder test against `https://example.com`)
-3. Optional report: `pytest --alluredir=allure-results && allure serve allure-results`
+[![tests](https://github.com/jakubbarak2001/qa-automation-skeleton/actions/workflows/tests.yml/badge.svg)](https://github.com/jakubbarak2001/qa-automation-skeleton/actions/workflows/tests.yml)
+
+A minimal **QA automation framework skeleton** using:
+- **Pytest** as the test runner  
+- **Playwright** for browser automation  
+- **Page Object Model (POM)** structure  
+- **Allure** for reporting  
+
+This repo is intended as a blueprint for building scalable UI test automation.
 
 ---
 
-## What you get
-- **Page Object Model** (`pages/`): `HomePage`, `LoginPage` (skeletons).
-- **Fixtures** (`conftest.py`): `browser`, `page`, `base_url` (override with `BASE_URL` env var).
-- **Tests** (`tests/`): one smoke test, one skipped login test placeholder.
+## Features
+- ✅ Page Object Model with `HomePage` and `LoginPage` skeletons  
+- ✅ Fixtures (`browser`, `page`, `base_url`) in `conftest.py`  
+- ✅ Example smoke test (homepage) + placeholder login test  
+- ✅ Ready-to-run with GitHub Actions CI and Allure reporting  
 
-## Change the base URL
-```
-export BASE_URL=https://your-app.local
-pytest
-```
+---
 
-## GitHub Actions (optional)
-A basic workflow is included to run tests on pushes.
+## Quickstart (local)
 
-## Notes
-- The smoke test uses `https://example.com` and checks the `<h1>` is visible. Replace with your app later.
-- The login test is deliberately **skipped** until you wire real selectors/route.
+1. Create & activate venv, install dependencies:
+   ```powershell
+   py -m venv .venv
+   .\.venv\Scripts\Activate.ps1
+   pip install -r requirements.txt
+   py -m playwright install
