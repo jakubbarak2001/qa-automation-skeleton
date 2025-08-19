@@ -12,7 +12,21 @@ This repo is intended as a blueprint for building scalable UI test automation.
 
 ---
 
+## Repo Baseline & Naming
+
+- **Repo name**: `qa-automation-skeleton` — baseline project for automated UI testing.  
+  Combines Python + Playwright + Pytest + Allure as a foundation for scalable QA.
+
+- **Naming conventions**:
+  - Files & directories: `snake_case` (e.g., `home_page.py`, `test_login.py`)
+  - Classes: `PascalCase` (e.g., `HomePage`, `LoginPage`)
+  - Constants: `UPPER_SNAKE_CASE`
+  - Branches: `week<number>/<topic>` (e.g., `week2/baseline`)
+
+---
+
 ## Features
+
 - ✅ Page Object Model with `HomePage` and `LoginPage` skeletons  
 - ✅ Fixtures (`browser`, `page`, `base_url`) in `conftest.py`  
 - ✅ Example smoke test (homepage) + placeholder login test  
@@ -22,9 +36,27 @@ This repo is intended as a blueprint for building scalable UI test automation.
 
 ## Quickstart (local)
 
-1. Create & activate venv, install dependencies:
-   ```powershell
-   py -m venv .venv
-   .\.venv\Scripts\Activate.ps1
-   pip install -r requirements.txt
-   py -m playwright install
+# --- Create & activate virtual environment ---
+
+# Windows (PowerShell)
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+
+# Linux / macOS (bash/zsh)
+python3 -m venv .venv
+source .venv/bin/activate
+
+
+# --- Install dependencies ---
+pip install -r requirements.txt
+python -m playwright install
+
+
+# --- Run tests ---
+pytest -q
+
+
+# --- Generate Allure report ---
+pytest --alluredir=reports/allure-results
+allure serve reports/allure-results
+
