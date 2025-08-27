@@ -31,32 +31,33 @@ This repo is intended as a blueprint for building scalable UI test automation.
 - ✅ Fixtures (`browser`, `page`, `base_url`) in `conftest.py`  
 - ✅ Example smoke test (homepage) + placeholder login test  
 - ✅ Ready-to-run with GitHub Actions CI and Allure reporting  
+- ✅ testing conducted via `https://www.saucedemo.com/`
 
 ---
 
-## Quickstart (local)
+# Quickstart (local)
 
-# --- Create & activate virtual environment ---
+## Create & activate virtual environment
 
-# Windows (PowerShell)
+- **Windows (PowerShell)**:
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
 
-# Linux / macOS (bash/zsh)
+# **Linux / macOS (bash/zsh)**:
 python3 -m venv .venv
 source .venv/bin/activate
 
 
-# --- Install dependencies ---
+# **Install dependencies**:
 pip install -r requirements.txt
 python -m playwright install
 
 
-# --- Run tests ---
+# **Run tests**:
 pytest -q
 
 
-# --- Generate Allure report ---
+# **Generate Allure report**:
 pytest --alluredir=reports/allure-results
 allure serve reports/allure-results
 
