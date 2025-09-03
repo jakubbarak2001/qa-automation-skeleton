@@ -20,5 +20,5 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Run tests
         env:
-          BASE_URL: https://example.com
+          BASE_URL: https://www.saucedemo.com/
         run: pytest -q
