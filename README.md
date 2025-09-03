@@ -29,7 +29,6 @@ This repo is intended as a blueprint for building scalable UI test automation.
 
 - ✅ Page Object Model with `HomePage` and `LoginPage` skeletons  
 - ✅ Fixtures (`browser`, `page`, `base_url`) in `conftest.py`  
-- ✅ Example smoke test (homepage) + placeholder login test  
 - ✅ Ready-to-run with GitHub Actions CI and Allure reporting  
 - ✅ testing conducted via `https://www.saucedemo.com/`
 
