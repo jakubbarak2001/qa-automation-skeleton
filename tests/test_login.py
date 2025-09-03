@@ -1,8 +1,8 @@
 import pytest
 
 
-def test_login(page, base_url):
-    page.goto(base_url)
+def test_login(page, app_base_url):
+    page.goto(app_base_url)
     page.locator('[data-test="username"]').fill('standard_user')
     page.locator('[data-test="password"]').fill('secret_sauce')
     page.locator('[data-test="login-button"]').click()
@@ -10,8 +10,8 @@ def test_login(page, base_url):
     assert page.locator('[data-test="inventory-list"]').is_visible()
 
 
-def test_login_wrong(page, base_url):
-    page.goto(base_url)
+def test_login_with_invalid_password(page, app_base_url):
+    page.goto(app_base_url)
     page.locator('[data-test="username"]').fill('standard_user')
     page.locator('[data-test="password"]').fill('wrong_password')
     page.locator('[data-test="login-button"]').click()
