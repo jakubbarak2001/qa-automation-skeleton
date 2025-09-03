@@ -9,7 +9,7 @@ from playwright.sync_api import sync_playwright
 
 
 @pytest.fixture(scope="session")
-def base_url():
+def app_base_url() -> str:
     """Base URL for the app under test. Override with BASE_URL env var."""
     return os.getenv("BASE_URL", "https://www.saucedemo.com/")
 
