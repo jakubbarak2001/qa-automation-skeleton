@@ -1,0 +1,15 @@
+services:
+  tester:
+    build: .
+    volumes:
+      - .:/app
+    # 1. Add ports here, so the tester container can host the report
+    ports:
+      - "8080:8080"
+    # 2. Command now does everything: tests -> generates report -> serves report
+    command: >
+      /bin/sh -c "pytest --alluredir=reports/allure-results --clean-alluredir && 
+      allure generate reports/allure-results --clean -o reports/allure-report && 
+      allure open reports/allure-report -h 0.0.0.0 -p 8080"
+    working_dir: /app
+    ipc: host
