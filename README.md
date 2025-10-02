@@ -28,6 +28,7 @@ This repo is intended as a blueprint for building scalable UI test automation.
 
 - ✅ Page Object Model with `HomePage` and `LoginPage` skeletons  
 - ✅ Fixtures (`browser`, `page`, `base_url`) in `conftest.py`  
+- ✅ Single-command execution using Docker Compose for reproducible runs.
 - ✅ Ready-to-run with GitHub Actions CI and Allure reporting  
 - ✅ testing conducted via `https://www.saucedemo.com/`
 
@@ -35,44 +36,55 @@ This repo is intended as a blueprint for building scalable UI test automation.
 
 ## Quickstart (local)
 
-### Create & activate virtual environment
+This project uses Docker Compose to manage the testing environment, 
+ensuring tests run consistently without requiring you to install
+Python, Java, or browser dependencies locally.
+### Prerequisites
 
-**Windows (PowerShell):**
-* py -m venv .venv
-* .\\.venv\Scripts\Activate.ps1
+1. Git (to clone the repo)
+2. Docker (installed and running)
 
-**Linux / macOS (bash/zsh):**
-* python3 -m venv .venv
-* source .venv/bin/activate
+### 1. Build and run the Full Pipeline
 
+Execute this single command from the project root. 
+It will build the test environment, run all Pytest cases, 
+and automatically serve the interactive Allure Report.
 
-### Install dependencies:
-* pip install -r requirements.txt\
-* python -m playwright install
+`docker compose up --build`
 
+The Allure Report will be accessible in your browser at: 
 
-### Run tests:
-You can choose from diffrent options:
+http://localhost:8080
 
-- **Run all tests (quiet mode)**  
-`pytest -q`
-- **Run all UI tests**\
-`pytest -m -ui`
-- **Run all API tests**\
-`pytest -m -api`
+### 2. Run Specific test suites (Advanced)
+If you wish to run only specific tests (like just UI tests), 
+you can pass the Pytest arguments directly 
+to the Docker Compose service.
 
-### Generate Allure report (clean run)
-Always clean old results before generating a new report:
+**Run UI Tests Only**
 
-**Windows (PowerShell):**
-* Remove-Item -Recurse -Force reports\allure-results, reports\allure-report
-* pytest --alluredir=reports/allure-results --clean-alluredir
-* allure serve reports/allure-results
+This executes tests marked with @pytest.mark.ui
 
-**Linux / macOS (bash/zsh):**
-* rm -rf reports/allure-results reports/allure-report
-* pytest --alluredir=reports/allure-results --clean-alluredir
-* allure serve reports/allure-results
+`docker compose run --rm tester -m ui`
 
-✅ This way, the Allure report will always reflect exactly the tests you just ran (no duplicates, no ghosts).
+**Run API Tests Only**
 
+This executes tests marked with @pytest.mark.api
+
+`docker compose run --rm tester -m api`
+
+**Run All Tests (Quiet Mode)**
+
+This executes all tests while minimizing console output.
+
+`docker compose run --rm tester -q`
+
+After running a specific suite, 
+you can manually start the Allure server to view the results:
+
+`docker compose up allure-server`
+
+### 3. Clean Up
+To stop the running services and clean up the network:
+
+`docker compose down`
